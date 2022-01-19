@@ -1,0 +1,28 @@
+学生：宿舍  n:1
+学生：记录  1:1
+宿舍: 记录  1:m
+
+-- 宿舍表
+create table dormitory(
+	id int primary key auto_increment,
+	number varchar(10)
+);
+
+-- 学生表
+create table student(
+	id int primary key auto_increment,
+	name varchar(20),
+	dormitory_id int,
+	foreign key(dormitory_id) references dormitory(id)
+);
+
+-- 每日宿舍查房记录
+drop table if exists record;
+create table record(
+	id int primary key auto_increment,
+	record_time timestamp default now(),
+	dormitory_id int,
+	student_id int,
+	foreign key(dormitory_id) references dormitory(id),
+	foreign key(student_id) references student(id)
+);

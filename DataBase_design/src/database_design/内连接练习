@@ -1,0 +1,21 @@
+-- 查询所有同学的总成绩，及同学的个人信息：
+
+select stu.id,stu.sn,stu.name,stu.qq_mail,sum(sco.score) '总成绩'
+from student stu , score sco
+where stu.id = sco.student_id
+group by stu.id;
+
+
+-- 查询所有同学的成绩，及同学的个人信息：
+select stu.id,stu.sn,stu.name,stu.qq_mail,sco.score,course.id,course.name
+from student stu , score sco,course
+where stu.id = sco.student_id
+and course.id = sco.course_id
+group by stu.id,course.id;
+
+
+select stu.id,stu.sn,stu.name,stu.qq_mail,sco.score,course.id,course.name
+from student stu , score sco,course
+where stu.id = sco.student_id
+and course.id = sco.course_id
+order by stu.id;
